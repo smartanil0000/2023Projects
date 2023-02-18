@@ -13,4 +13,17 @@ router.get('/',async (req,res)=>{
 
 router.post('/',async (req,res)=>{
     let category = new Category({
- 
+        name: req.body.name,
+        icon: req.body.icon,
+        color: req.body.icon
+    })
+     category = await category.save();
+
+     if(!category)
+     return res.status(404).send('the category cannot be created!')
+
+     res.send(category)
+
+})
+
+module.exports = router;
